@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
-import { arrayMove } from '@dnd-kit/sortable';
+import { arrayMove, SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
 import './App.css';
 
 function App() {
@@ -20,7 +20,9 @@ function App() {
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="App">
-        <p>{items.join(', ')}</p>
+        <SortableContext items={items} strategy={rectSortingStrategy}>
+          <p>{items.join(', ')}</p>
+        </SortableContext>
       </div>
     </DndContext>
   );
