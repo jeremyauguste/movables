@@ -25,8 +25,12 @@ function App() {
     }
   }
 
+  function handleDragCancel() {
+    setActiveId(null);
+  }
+
   return (
-    <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} modifiers={[restrictToParentElement]}>
+    <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragCancel={handleDragCancel} modifiers={[restrictToParentElement]}>
       <div className="App">
         <SortableContext items={items} strategy={rectSortingStrategy}>
           <div className="grid">
