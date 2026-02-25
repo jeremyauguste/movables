@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
+import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { arrayMove, SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
 import Square from './Square';
 import './App.css';
@@ -19,7 +20,7 @@ function App() {
   }
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext onDragEnd={handleDragEnd} modifiers={[restrictToParentElement]}>
       <div className="App">
         <SortableContext items={items} strategy={rectSortingStrategy}>
           <div className="grid">
