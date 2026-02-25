@@ -1,19 +1,19 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { restrictToParentElement } from '@dnd-kit/modifiers';
 import { arrayMove, SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
 import Square from './Square';
 import './App.css';
 
+const prefersReducedMotion =
+  typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 function App() {
   const [items, setItems] = useState([1, 2, 3, 4, 5]);
   const [activeId, setActiveId] = useState(null);
-  const prefersReducedMotion = useRef(
-    typeof window !== 'undefined' &&
-      typeof window.matchMedia === 'function' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
-  const dropAnimation = prefersReducedMotion.current ? null : undefined;
+  const dropAnimation = prefersReducedMotion ? null : undefined;
 
   function handleDragStart(event) {
     setActiveId(event.active.id);
