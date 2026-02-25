@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 import { arrayMove, SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
+import Square from './Square';
 import './App.css';
 
 function App() {
@@ -21,7 +22,11 @@ function App() {
     <DndContext onDragEnd={handleDragEnd}>
       <div className="App">
         <SortableContext items={items} strategy={rectSortingStrategy}>
-          <p>{items.join(', ')}</p>
+          <div className="grid">
+            {items.map((id) => (
+              <Square key={id} id={id} />
+            ))}
+          </div>
         </SortableContext>
       </div>
     </DndContext>
